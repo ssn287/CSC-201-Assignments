@@ -22,12 +22,6 @@ public class BigTest {
 		}
 		return result;
 	}
-	/**
-	 * 
-	 * @param x
-	 * @param y
-	 * @return
-	 */
 	public static BigInteger karatSuba(BigInteger x, BigInteger y) {
 		int m = Math.max(String.valueOf(x).length(), String.valueOf(y).length());
 		if(x.compareTo(BigInteger.TEN) == -1 || y.compareTo(BigInteger.TEN) == -1) {
