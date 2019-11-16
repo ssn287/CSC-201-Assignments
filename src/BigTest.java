@@ -8,32 +8,26 @@
 import java.math.BigInteger;
 import java.util.Random;
 public class BigTest {
+	//getRandom returns a random positive integer within a given range
 	public static BigInteger getRandom(BigInteger min, BigInteger max) {
 		BigInteger range = max.subtract(min);
 		Random r = new Random();
 		int length = max.bitLength();
 		BigInteger result = new BigInteger(length, r);
 		if(result.compareTo(min) == -1) {
-			result.add(min);
+			result = result.add(min);
 		}
 		if(result.compareTo(range) >= 0) {
-			result.mod(range).add(min);
+			result = result.mod(range).add(min);
 		}
 		return result;
 	}
 	/**
-	 * @param n = number of digits
-	 * @param i = power of 10
-	 * @return random number in range (1 - 9) generated for each digit n
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
 	 */
-	public static BigInteger create(int n, int i) {
-		if(n == 0) {
-			return BigInteger.ZERO;
-		}
-		else {
-			return BigInteger.valueOf(1 + (long)(Math.random() * 9)).multiply(BigInteger.TEN.pow(i)).add(create(--n, ++i));
-		}
-	}
 	public static BigInteger karatSuba(BigInteger x, BigInteger y) {
 		int m = Math.max(String.valueOf(x).length(), String.valueOf(y).length());
 		if(x.compareTo(BigInteger.TEN) == -1 || y.compareTo(BigInteger.TEN) == -1) {
@@ -46,17 +40,18 @@ public class BigTest {
 			BigInteger a = x.subtract(b.shiftLeft(h));
 			BigInteger d = y.shiftRight(h);
 			BigInteger c = y.subtract(d.shiftLeft(h));
-			BigInteger ac = karatSuba(a, c);
-			BigInteger bd = karatSuba(b, d);
-			BigInteger abcd = karatSuba(a.add(b), c.add(d));
-			return ac.add(abcd.subtract(ac).subtract(bd).shiftLeft(h).add(bd.shiftLeft(2 * h)));
+			//compute sub-expressions
+			BigInteger z0 = karatSuba(b, d);
+			BigInteger z1 = karatSuba(a.add(b), c.add(d));
+			BigInteger z2 = karatSuba(a, c);
+			return z2.add(z1.subtract(z2).subtract(z0).shiftLeft(h)).add(z0.shiftLeft(2 * h));
 		}
 	}
 	public static void main(String[] args) {
 		for(int i = 6; i < 16; i++) {
 			long s1, e1, s2, e2;
 			BigInteger x = getRandom(BigInteger.TEN.pow(i - 1), BigInteger.TEN.pow(i).subtract(BigInteger.ONE));
-			BigInteger y = create(i, 0);
+			BigInteger y = getRandom(BigInteger.TEN.pow(i - 1), BigInteger.TEN.pow(i).subtract(BigInteger.ONE));
 			s1 = System.nanoTime();
 			BigInteger z1 = karatSuba(x, y);
 			e1 = System.nanoTime() - s1;
