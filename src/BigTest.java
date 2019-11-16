@@ -43,14 +43,13 @@ public class BigTest {
 			time1 = System.nanoTime() - start1;
 			System.out.println("Using Karatsuba's Algorithm\n");
 			System.out.printf("\t%d digits: %,d nanoseconds%n\n", i, time1);
+			System.out.printf("\t\t%,d * %,d = %,d\n\n", x, y, z1);
 			start2 = System.nanoTime();
 			BigInteger z2 = x.multiply(y);
 			time2 = System.nanoTime() - start2;
 			System.out.println("Using BigInteger\n");
 			System.out.printf("\t%d digits: %,d nanoseconds%n\n", i, time2);
-			if(z1.compareTo(z2) == 0) {
-				System.out.printf("\t%,d * %,d = %,d\n\n", x, y, z1);
-			}
+			System.out.printf("\t\t%,d * %,d = %,d\n\n", x, y, z2);
 		}
 	}
 }
