@@ -49,7 +49,7 @@ public class BigTest {
 			System.out.println("Using BigInteger\n");
 			System.out.printf("\t%d digits: %,d nanoseconds%n\n", i, time2);
 			if(z1.compareTo(z2) == 0) {
-				System.out.printf("\t%d * %d = %d\n\n", x, y, z1);
+				System.out.printf("\t%,d * %,d = %,d\n\n", x, y, z1);
 			}
 		}
 	}
