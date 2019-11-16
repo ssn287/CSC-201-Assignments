@@ -7,12 +7,12 @@
  */
 import java.math.BigInteger;
 public class BigTest {
-	public static BigInteger create(int n, int i) {//creates a random BigInteger with n digits
+	public static BigInteger create(int n, int i) {
 		if(n == 0) {
 			return BigInteger.ZERO;
 		}
 		else {
-			return BigInteger.valueOf((long)Math.random() * 10).multiply(BigInteger.TEN.pow(i)).add(create(--n, ++i));
+			return BigInteger.valueOf((long)(Math.random() * 10)).multiply(BigInteger.TEN.pow(i)).add(create(--n, ++i));
 		}
 	}
 	public static BigInteger karatSuba(BigInteger x, BigInteger y) {
@@ -42,14 +42,14 @@ public class BigTest {
 			BigInteger z1 = karatSuba(x, y);
 			time1 = System.nanoTime() - start1;
 			System.out.println("Using Karatsuba's Algorithm\n");
-			System.out.printf("\t%,d digits: %,d nanoseconds%n\n", i, time1);
+			System.out.printf("\t%d digits: %,d nanoseconds%n\n", i, time1);
 			start2 = System.nanoTime();
 			BigInteger z2 = x.multiply(y);
 			time2 = System.nanoTime() - start2;
 			System.out.println("Using BigInteger\n");
-			System.out.printf("\t%,d digits: %,d nanoseconds%n\n", i, time2);
+			System.out.printf("\t%d digits: %,d nanoseconds%n\n", i, time2);
 			if(z1.compareTo(z2) == 0) {
-				System.out.print(x + " * " + y + " = " + z1 + "\n\n");
+				System.out.printf("\t%d * %d = %d\n\n", x, y, z1);
 			}
 		}
 	}
