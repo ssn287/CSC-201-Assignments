@@ -35,20 +35,20 @@ public class BigTest {
 	}
 	public static void main(String[] args) {
 		for(int i = 6; i < 16; i++) {
-			long start1, time1, start2, time2;
+			long s1, e1, s2, e2;
 			BigInteger x = create(i, 0);
 			BigInteger y = create(i, 0);
-			start1 = System.nanoTime();
+			s1 = System.nanoTime();
 			BigInteger z1 = karatSuba(x, y);
-			time1 = System.nanoTime() - start1;
+			e1 = System.nanoTime() - s1;
 			System.out.println("Using Karatsuba's Algorithm\n");
-			System.out.printf("\t%d digits: %,d nanoseconds%n\n", i, time1);
+			System.out.printf("\t%d digits: %,d nanoseconds%n\n", i, e1);
 			System.out.printf("\t\t%,d * %,d = %,d\n\n", x, y, z1);
-			start2 = System.nanoTime();
+			s2 = System.nanoTime();
 			BigInteger z2 = x.multiply(y);
-			time2 = System.nanoTime() - start2;
+			e2 = System.nanoTime() - s2;
 			System.out.println("Using BigInteger\n");
-			System.out.printf("\t%d digits: %,d nanoseconds%n\n", i, time2);
+			System.out.printf("\t%d digits: %,d nanoseconds%n\n", i, e2);
 			System.out.printf("\t\t%,d * %,d = %,d\n\n", x, y, z2);
 		}
 	}
