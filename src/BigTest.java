@@ -12,21 +12,28 @@ public class BigTest {
 	public static BigInteger getRandom(BigInteger min, BigInteger max) {
 		BigInteger range = max.subtract(min);
 		Random r = new Random();
-		int length = max.bitLength();
-		BigInteger result = new BigInteger(length, r);
+		BigInteger result = new BigInteger(max.bitLength(), r);
 		if(result.compareTo(min) == -1) {
-			result = result.add(min);
+			result.add(min);
 		}
 		if(result.compareTo(range) >= 0) {
-			result = result.mod(range).add(min);
+			result.mod(range).add(min);
 		}
 		return result;
 	}
+	/**
+	 * Where n is the number of digits being multiplied,
+	 * Karatsuba's multiplication operates in O(n^log2(3)) time (~ O(n^1.585))
+	 * Grade-school multiplication operates in O(n^2) time.
+	 * Karatsuba's multiplication is asymptotically faster.
+	 */
 	public static BigInteger karatSuba(BigInteger x, BigInteger y) {
-		int m = Math.max(String.valueOf(x).length(), String.valueOf(y).length());
+		int m = Math.max(String.valueOf(x).length(), String.valueOf(y).length()); // the maximum number of digits
+		// Base case: single digit multiplication
 		if(x.compareTo(BigInteger.TEN) == -1 || y.compareTo(BigInteger.TEN) == -1) {
 			return x.multiply(y);
 		}
+		// Recursive case: Karatsuba's algorithm
 		else {
 			int h = m / 2;
 			// x = a + 2^n * b, y = c + 2^n * d
@@ -41,6 +48,16 @@ public class BigTest {
 			return z2.add(z1.subtract(z2).subtract(z0).shiftLeft(h)).add(z0.shiftLeft(2 * h));
 		}
 	}
+	/**
+	 * For the BigInteger .multiply() function:
+	 * The threshold value for using Karatsuba multiplication is 80.
+	 * If the number of ints in both mag arrays are greater than this number,
+	 * then Karatsuba multiplication will be used.
+	 * The threshold for using squaring code for multiplication is 20.
+	 * The assignment requires testing of values between 6-15 digits,
+	 * so .multiply() calls .multiplyByInt(int[] x, int y, int sign)
+	 * to use the grade school algorithm for multiplication.
+	 */
 	public static void main(String[] args) {
 		for(int i = 6; i < 16; i++) {
 			long s1, e1, s2, e2;
