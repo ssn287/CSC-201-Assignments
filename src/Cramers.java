@@ -65,9 +65,9 @@ public class Cramers extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 	}
 	public static double getDet(double m[][]) {
-	    return m[0][0] * (m[1][1] * m[2][2] - m[2][1] * m[1][2])
-	    	 - m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0])
-	         + m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]);
+		return m[0][0] * (m[1][1] * m[2][2] - m[2][1] * m[1][2])
+			 - m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0])
+			 + m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]);
 	}
 	public static String implementCramers() {
 		String output = "";
@@ -77,31 +77,31 @@ public class Cramers extends JFrame implements ActionListener {
 			coeffs[i][2] = Double.parseDouble(jtxtC[i].getText());
 			coeffs[i][3] = Double.parseDouble(jtxtD[i].getText());
 		}
-	    double d[][] =  {{coeffs[0][0], coeffs[0][1], coeffs[0][2]}, {coeffs[1][0], coeffs[1][1], coeffs[1][2]}, {coeffs[2][0], coeffs[2][1], coeffs[2][2]}}; 
-	    double d1[][] = {{coeffs[0][3], coeffs[0][1], coeffs[0][2]}, {coeffs[1][3], coeffs[1][1], coeffs[1][2]}, {coeffs[2][3], coeffs[2][1], coeffs[2][2]}};
-	    double d2[][] = {{coeffs[0][0], coeffs[0][3], coeffs[0][2]}, {coeffs[1][0], coeffs[1][3], coeffs[1][2]}, {coeffs[2][0], coeffs[2][3], coeffs[2][2]}};
-	    double d3[][] = {{coeffs[0][0], coeffs[0][1], coeffs[0][3]}, {coeffs[1][0], coeffs[1][1], coeffs[1][3]}, {coeffs[2][0], coeffs[2][1], coeffs[2][3]}};
-	    double D =  getDet(d);
-	    double D1 = getDet(d1);
-	    double D2 = getDet(d2);
-	    double D3 = getDet(d3);
-	    if(D != 0) {
-	        double x = D1 / D;
-	        double y = D2 / D;
-	        double z = D3 / D;
-	        output = "x = " + x + ", y = " + y + ", z = " + z;
-	    }
-	    else {
-	        if(D1 == 0 && D2 == 0 && D3 == 0) {
-	            output = "Infinite solutions";
-	        }
-	        else {
-	        	if(D1 != 0 || D2 != 0 || D3 != 0) {
-	        		output = "No solutions";
-	        	}
-	        }
-	    }
-	    return output;
+		double d[][] =  {{coeffs[0][0], coeffs[0][1], coeffs[0][2]}, {coeffs[1][0], coeffs[1][1], coeffs[1][2]}, {coeffs[2][0], coeffs[2][1], coeffs[2][2]}}; 
+		double d1[][] = {{coeffs[0][3], coeffs[0][1], coeffs[0][2]}, {coeffs[1][3], coeffs[1][1], coeffs[1][2]}, {coeffs[2][3], coeffs[2][1], coeffs[2][2]}};
+		double d2[][] = {{coeffs[0][0], coeffs[0][3], coeffs[0][2]}, {coeffs[1][0], coeffs[1][3], coeffs[1][2]}, {coeffs[2][0], coeffs[2][3], coeffs[2][2]}};
+		double d3[][] = {{coeffs[0][0], coeffs[0][1], coeffs[0][3]}, {coeffs[1][0], coeffs[1][1], coeffs[1][3]}, {coeffs[2][0], coeffs[2][1], coeffs[2][3]}};
+		double D =  getDet(d);
+		double D1 = getDet(d1);
+		double D2 = getDet(d2);
+		double D3 = getDet(d3);
+		if(D != 0) {
+			double x = D1 / D;
+			double y = D2 / D;
+			double z = D3 / D;
+			output = "x = " + x + ", y = " + y + ", z = " + z;
+		}
+		else {
+			if(D1 == 0 && D2 == 0 && D3 == 0) {
+				output = "Infinite solutions";
+			}
+			else {
+				if(D1 != 0 || D2 != 0 || D3 != 0) {
+					output = "No solutions";
+				}
+			}
+		}
+		return output;
 	}
 	public void actionPerformed(ActionEvent e) {
 		jlblOutput.setText(implementCramers());
