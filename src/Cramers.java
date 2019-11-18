@@ -81,7 +81,7 @@ public class Cramers extends JFrame implements ActionListener {
 	    double d1[][] = {{coeffs[0][3], coeffs[0][1], coeffs[0][2]}, {coeffs[1][3], coeffs[1][1], coeffs[1][2]}, {coeffs[2][3], coeffs[2][1], coeffs[2][2]}};
 	    double d2[][] = {{coeffs[0][0], coeffs[0][3], coeffs[0][2]}, {coeffs[1][0], coeffs[1][3], coeffs[1][2]}, {coeffs[2][0], coeffs[2][3], coeffs[2][2]}};
 	    double d3[][] = {{coeffs[0][0], coeffs[0][1], coeffs[0][3]}, {coeffs[1][0], coeffs[1][1], coeffs[1][3]}, {coeffs[2][0], coeffs[2][1], coeffs[2][3]}};
-	    double D = getDet(d);
+	    double D =  getDet(d);
 	    double D1 = getDet(d1);
 	    double D2 = getDet(d2);
 	    double D3 = getDet(d3);
@@ -92,7 +92,7 @@ public class Cramers extends JFrame implements ActionListener {
 	        output = "x = " + x + ", y = " + y + ", z = " + z;
 	    }
 	    else {
-	        if (D1 == 0 && D2 == 0 && D3 == 0) {
+	        if(D1 == 0 && D2 == 0 && D3 == 0) {
 	            output = "Infinite solutions";
 	        }
 	        else {
