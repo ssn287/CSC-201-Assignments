@@ -37,7 +37,6 @@ public class Cramers extends JFrame implements ActionListener {
 		jlblTitles[2] = new JLabel("By +");
 		jlblTitles[3] = new JLabel("Cz =");
 		jlblTitles[4] = new JLabel("D");
-		inputPanel.setBackground(Color.CYAN);
 		inputPanel.setLayout(new GridLayout(4, 5));
 		for(int i = 0; i < 5; i++) {
 			inputPanel.add(jlblTitles[i]);
@@ -53,7 +52,6 @@ public class Cramers extends JFrame implements ActionListener {
 			jtxtD[i] = new JTextField(8);
 			inputPanel.add(jtxtD[i]);
 		}
-		outputPanel.setBackground(Color.GREEN);
 		outputPanel.setLayout(new GridLayout(2, 1));
 		jbtCalculate.addActionListener(this);
 		outputPanel.add(jbtCalculate);
