@@ -6,7 +6,7 @@
  * Purpose: Programming Assignment #10
  */
 public class Strassen {
-	private final static int N = 3; // matrix dimension
+	private final static int N = 8; // matrix dimension *value must be a power of two where N = 2^n and n > 0*
 	public static void print(int[][] a) {
 		System.out.println();
 		for(int i = 0; i < a.length; i++) {
@@ -51,7 +51,7 @@ public class Strassen {
 	 * Strassen's algorithm is asymptotically faster, standard method saves memory
 	 */
 	public static int[][] strassen(int[][] a, int[][] b) {
-		if(a.length <= 1) {// base case
+		if(a.length <= 1) { // base case
 			return mul(a, b);
 		}
 		else {
@@ -132,10 +132,9 @@ public class Strassen {
 				y[i][j] = (int)(Math.random() * 1000);
 			}
 		}
-		print(x); print(y);
+		System.out.println("\nMatrix A"); print(x);
+		System.out.println("\nMatrix B"); print(y);
 		int[][] z = strassen(x, y);
-		print(z);
-		int[][] check = mul(x, y);
-		print(check);
+		System.out.println("\nProduct (Strassen's)"); print(z);
 	}
 }
